@@ -14,6 +14,7 @@ class IndexController extends Controller
      */
     public function __invoke(): ResourceCollection
     {
-        return ScooterListResource::collection(Scooter::all());
+        $scooters = Scooter::with('type')->paginate();
+        return ScooterListResource::collection($scooters);
     }
 }

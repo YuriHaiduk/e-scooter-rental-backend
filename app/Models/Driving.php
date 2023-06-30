@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 
 class Driving extends Model
 {
@@ -26,4 +27,22 @@ class Driving extends Model
     {
         return $this->belongsTo(Scooter::class);
     }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->whereNull('stop_time');
+    }
+
+    public function scopeStopped(Builder $query): Builder
+    {
+        return $query->whereNotNull('stop_time');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->where('user_id', auth()->id());
+        });
+    }
+
 }

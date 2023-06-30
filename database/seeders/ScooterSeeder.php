@@ -13,8 +13,6 @@ class ScooterSeeder extends Seeder
      */
     public function run(): void
     {
-        Scooter::create(['type' => 'Electric Kick Scooter', 'price_per_hour' => 100]);
-        Scooter::create(['type' => 'Self-Balancing E-scooter', 'price_per_hour' => 200]);
-        Scooter::create(['type' => 'Electric Moped', 'price_per_hour' => 300]);
+        Scooter::factory(50)->create();
     }
 }

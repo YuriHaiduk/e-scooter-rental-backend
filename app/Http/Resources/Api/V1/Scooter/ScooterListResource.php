@@ -16,8 +16,9 @@ class ScooterListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => $this->type,
-            'price_per_hour' => $this->price_per_hour,
+            'plate_number' => $this->plate_number,
+            'type' => $this->type->name,
+            'price_per_hour' => $this->type->price_per_hour,
         ];
     }
 }
