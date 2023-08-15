@@ -16,7 +16,7 @@ class DrivingResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        $totalPrice = $this->total_price ?? DrivingPriceService::calculatePrice(
+        $totalPrice = $this->total_price ?? calculatePrice(
             $this->scooter->type->id,
             $this->start_time,
             $this->stop_time

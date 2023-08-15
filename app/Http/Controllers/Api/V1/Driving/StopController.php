@@ -13,7 +13,7 @@ class StopController extends Controller
     {
         $driving->update([
             'stop_time'   => now(),
-            'total_price' => DrivingPriceService::calculatePrice($driving->scooter->type->id, $driving->start_time),
+            'total_price' => calculatePrice($driving->scooter->type->id, $driving->start_time),
         ]);
 
         return DrivingResource::make($driving);

@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Services;
-
 use App\Models\Type;
 use Carbon\Carbon;
 
-class DrivingPriceService
-{
+if (!function_exists('calculatePrice')) {
 
-    public static function calculatePrice(int $typeId, string $startTime, string $stopTime = null): int
+    function calculatePrice(int $typeId, string $startTime, string $stopTime = null): int
     {
         $start = new Carbon($startTime);
         $stop = (!is_null($stopTime)) ? new Carbon($stopTime) : now();
@@ -19,5 +16,4 @@ class DrivingPriceService
 
         return ceil($totalTimeByMinutes * $priceByMinutes);
     }
-
 }
