@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1\Driving;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\Driving\DrivingResource;
-use App\Models\Driving;
+use App\Repositories\DrivingRepository;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class HistoryController extends Controller
@@ -12,12 +12,9 @@ class HistoryController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(): ResourceCollection
+    public function __invoke(DrivingRepository $drivingRepository): ResourceCollection
     {
-        $stoppedDrivings = Driving::stopped()
-            ->with('scooter.type')
-            ->latest('stop_time')
-            ->paginate();
+        $stoppedDrivings = $drivingRepository->getStoppedDrivings();
 
         return DrivingResource::collection($stoppedDrivings);
     }

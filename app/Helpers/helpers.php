@@ -4,7 +4,6 @@ use App\Models\Type;
 use Carbon\Carbon;
 
 if (!function_exists('calculatePrice')) {
-
     function calculatePrice(int $typeId, string $startTime, string $stopTime = null): int
     {
         $start = new Carbon($startTime);

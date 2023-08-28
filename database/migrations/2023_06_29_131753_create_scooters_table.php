@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('scooters', function (Blueprint $table) {
             $table->id();
             $table->foreignId('type_id')->constrained();
-            $table->string('plate_number');
+            $table->string('plate_number', 20);
             $table->timestamps();
         });
     }
